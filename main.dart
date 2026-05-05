@@ -130,7 +130,7 @@ void main() {
     print('6. Celsius a Fahrenheit');
     print('7. Salir');
     stdout.write('Seleccione una opción (1–7): ');
-    String? opcion = stdin.readLineSync();
+    String opcion = stdin.readLineSync() ?? '';
 
     switch (opcion) {
       case '1':
