@@ -1,30 +1,6 @@
 import 'dart:io';
-import 'dart:math';
+import 'operaciones.dart';
 
-// Funciones de operación
-double mult(double valorVelocidad, double valorTiempo) {
-  return valorVelocidad * valorTiempo;
-}
-
-double prom(double nota1, double nota2, double nota3) {
-  return (nota1 + nota2 + nota3) / 3;
-}
-
-int puntosEquipo(int pg, int pe, int pp) {
-  return pg * 3 + pe * 1 + pp * 0;
-}
-
-double totalEmpleado(int horas, double tarifa) {
-  return horas * tarifa;
-}
-
-double hipotenusa(double a, double b) {
-  return sqrt(a * a + b * b);
-}
-
-double celsiusAFahrenheit(double c) {
-  return c * 1.8 + 32;
-}
 
 // Funciones auxiliares para lectura segura
 double leerDouble(String mensaje) {
