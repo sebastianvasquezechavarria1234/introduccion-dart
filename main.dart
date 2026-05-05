@@ -59,11 +59,68 @@ int leerInt(String mensaje) {
   }
 }
 
+void ejecutarMultiplicacion() {
+  double velocidad = leerDouble('\n¿Cuál es la velocidad del vehículo? ');
+  double tiempo = leerDouble('¿Cuál es el tiempo del recorrido? ');
+  double resultado = mult(velocidad, tiempo);
+  print('El resultado (velocidad × tiempo) es: $resultado');
+}
+
+void ejecutarPromedio() {
+  double n1 = leerDouble('\nIngresa tu primera nota: ');
+  double n2 = leerDouble('Ingresa tu segunda nota: ');
+  double n3 = leerDouble('Ingresa tu tercera nota: ');
+  double promedio = prom(n1, n2, n3);
+  print('El promedio de tus notas es: ${promedio.toStringAsFixed(2)}');
+}
+
+void ejecutarPuntajeEquipo() {
+  int pg = leerInt('\nDigite la cantidad de partidos ganados: ');
+  int pe = leerInt('Digite la cantidad de partidos empatados: ');
+  int pp = leerInt('Digite la cantidad de partidos perdidos: ');
+  int totalPuntos = puntosEquipo(pg, pe, pp);
+  print('\nResumen del equipo:');
+  print('Ganados:   $pg');
+  print('Empatados: $pe');
+  print('Perdidos:  $pp');
+  print('Puntaje:   $totalPuntos');
+}
+
+void ejecutarPlanillaEmpleado() {
+  stdout.write('\nDigite el nombre del empleado: ');
+  String nombre = stdin.readLineSync() ?? 'Empleado';
+  int horas = leerInt('Horas laboradas en el mes: ');
+  double tarifa = leerDouble('Tarifa por hora: ');
+  double total = totalEmpleado(horas, tarifa);
+  print('\nPlanilla del empleado:');
+  print('Nombre:         $nombre');
+  print('Horas:          $horas');
+  print('Tarifa por h.:  \$${tarifa.toStringAsFixed(2)}');
+  print('Total devengado:\$${total.toStringAsFixed(2)}');
+}
+
+void ejecutarHipotenusa() {
+  double a = leerDouble('\nDigite la longitud del cateto a: ');
+  double b = leerDouble('Digite la longitud del cateto b: ');
+  double h = hipotenusa(a, b);
+  print('\nResultados del triángulo:');
+  print('Cateto a:   $a');
+  print('Cateto b:   $b');
+  print('Hipotenusa: ${h.toStringAsFixed(2)}');
+}
+
+void ejecutarConversionTemperatura() {
+  double c = leerDouble('\nDigite la temperatura en °C: ');
+  double f = celsiusAFahrenheit(c);
+  print('\nConversión de temperatura:');
+  print('Celsius:    ${c.toStringAsFixed(1)} °C');
+  print('Fahrenheit: ${f.toStringAsFixed(1)} °F');
+}
+
 void main() {
   bool continuar = true;
 
   while (continuar) {
-    // Mostrar menú
     print('\n=== Menú de ejercicios ===');
     print('1. Multiplicación velocidad × tiempo');
     print('2. Promedio de tres notas');
@@ -77,68 +134,27 @@ void main() {
 
     switch (opcion) {
       case '1':
-        double velocidad = leerDouble('\n¿Cuál es la velocidad del vehículo? ');
-        double tiempo = leerDouble('¿Cuál es el tiempo del recorrido? ');
-        double resultado1 = mult(velocidad, tiempo);
-        print('El resultado (velocidad × tiempo) es: $resultado1');
+        ejecutarMultiplicacion();
         break;
-
       case '2':
-        double n1 = leerDouble('\nIngresa tu primera nota: ');
-        double n2 = leerDouble('Ingresa tu segunda nota: ');
-        double n3 = leerDouble('Ingresa tu tercera nota: ');
-        double promedio = prom(n1, n2, n3);
-        print('El promedio de tus notas es: ${promedio.toStringAsFixed(2)}');
+        ejecutarPromedio();
         break;
-
       case '3':
-        int pg = leerInt('\nDigite la cantidad de partidos ganados: ');
-        int pe = leerInt('Digite la cantidad de partidos empatados: ');
-        int pp = leerInt('Digite la cantidad de partidos perdidos: ');
-        int totalPuntos = puntosEquipo(pg, pe, pp);
-        print('\nResumen del equipo:');
-        print('Ganados:   $pg');
-        print('Empatados: $pe');
-        print('Perdidos:  $pp');
-        print('Puntaje:   $totalPuntos');
+        ejecutarPuntajeEquipo();
         break;
-
       case '4':
-        stdout.write('\nDigite el nombre del empleado: ');
-        String nombre = stdin.readLineSync() ?? 'Empleado';
-        int horas = leerInt('Horas laboradas en el mes: ');
-        double tarifa = leerDouble('Tarifa por hora: ');
-        double total = totalEmpleado(horas, tarifa);
-        print('\nPlanilla del empleado:');
-        print('Nombre:         $nombre');
-        print('Horas:          $horas');
-        print('Tarifa por h.:  \$${tarifa.toStringAsFixed(2)}');
-        print('Total devengado:\$${total.toStringAsFixed(2)}');
+        ejecutarPlanillaEmpleado();
         break;
-
       case '5':
-        double a = leerDouble('\nDigite la longitud del cateto a: ');
-        double b = leerDouble('Digite la longitud del cateto b: ');
-        double h = hipotenusa(a, b);
-        print('\nResultados del triángulo:');
-        print('Cateto a:   $a');
-        print('Cateto b:   $b');
-        print('Hipotenusa: ${h.toStringAsFixed(2)}');
+        ejecutarHipotenusa();
         break;
-
       case '6':
-        double c = leerDouble('\nDigite la temperatura en °C: ');
-        double f = celsiusAFahrenheit(c);
-        print('\nConversión de temperatura:');
-        print('Celsius:    ${c.toStringAsFixed(1)} °C');
-        print('Fahrenheit: ${f.toStringAsFixed(1)} °F');
+        ejecutarConversionTemperatura();
         break;
-
       case '7':
         continuar = false;
         print('\n¡Hasta luego!');
         break;
-
       default:
         print('\nOpción inválida. Intente de nuevo.');
     }
