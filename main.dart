@@ -26,6 +26,39 @@ double celsiusAFahrenheit(double c) {
   return c * 1.8 + 32;
 }
 
+// Funciones auxiliares para lectura segura
+double leerDouble(String mensaje) {
+  while (true) {
+    stdout.write(mensaje);
+    String? entrada = stdin.readLineSync();
+    if (entrada == null || entrada.isEmpty) {
+      print('Por favor, ingrese un valor.');
+      continue;
+    }
+    try {
+      return double.parse(entrada);
+    } catch (e) {
+      print('Error: Debe ingresar un número válido.');
+    }
+  }
+}
+
+int leerInt(String mensaje) {
+  while (true) {
+    stdout.write(mensaje);
+    String? entrada = stdin.readLineSync();
+    if (entrada == null || entrada.isEmpty) {
+      print('Por favor, ingrese un número entero.');
+      continue;
+    }
+    try {
+      return int.parse(entrada);
+    } catch (e) {
+      print('Error: Debe ingresar un número entero válido.');
+    }
+  }
+}
+
 void main() {
   bool continuar = true;
 
@@ -40,39 +73,28 @@ void main() {
     print('6. Celsius a Fahrenheit');
     print('7. Salir');
     stdout.write('Seleccione una opción (1–7): ');
-    String opcion = stdin.readLineSync()!;
+    String? opcion = stdin.readLineSync();
 
     switch (opcion) {
       case '1':
-        // Punto 1 usando función mult
-        stdout.write('\n¿Cuál es la velocidad del vehículo? ');
-        double velocidad = double.parse(stdin.readLineSync()!);
-        stdout.write('¿Cuál es el tiempo del recorrido? ');
-        double tiempo = double.parse(stdin.readLineSync()!);
+        double velocidad = leerDouble('\n¿Cuál es la velocidad del vehículo? ');
+        double tiempo = leerDouble('¿Cuál es el tiempo del recorrido? ');
         double resultado1 = mult(velocidad, tiempo);
         print('El resultado (velocidad × tiempo) es: $resultado1');
         break;
 
       case '2':
-        // Punto 2 usando función prom
-        stdout.write('\nIngresa tu primera nota: ');
-        double n1 = double.parse(stdin.readLineSync()!);
-        stdout.write('Ingresa tu segunda nota: ');
-        double n2 = double.parse(stdin.readLineSync()!);
-        stdout.write('Ingresa tu tercera nota: ');
-        double n3 = double.parse(stdin.readLineSync()!);
+        double n1 = leerDouble('\nIngresa tu primera nota: ');
+        double n2 = leerDouble('Ingresa tu segunda nota: ');
+        double n3 = leerDouble('Ingresa tu tercera nota: ');
         double promedio = prom(n1, n2, n3);
         print('El promedio de tus notas es: ${promedio.toStringAsFixed(2)}');
         break;
 
       case '3':
-        // Punto 3 usando función puntosEquipo
-        stdout.write('\nDigite la cantidad de partidos ganados: ');
-        int pg = int.parse(stdin.readLineSync()!);
-        stdout.write('Digite la cantidad de partidos empatados: ');
-        int pe = int.parse(stdin.readLineSync()!);
-        stdout.write('Digite la cantidad de partidos perdidos: ');
-        int pp = int.parse(stdin.readLineSync()!);
+        int pg = leerInt('\nDigite la cantidad de partidos ganados: ');
+        int pe = leerInt('Digite la cantidad de partidos empatados: ');
+        int pp = leerInt('Digite la cantidad de partidos perdidos: ');
         int totalPuntos = puntosEquipo(pg, pe, pp);
         print('\nResumen del equipo:');
         print('Ganados:   $pg');
@@ -82,13 +104,10 @@ void main() {
         break;
 
       case '4':
-        // Punto 4 usando función totalEmpleado
         stdout.write('\nDigite el nombre del empleado: ');
-        String nombre = stdin.readLineSync()!;
-        stdout.write('Horas laboradas en el mes: ');
-        int horas = int.parse(stdin.readLineSync()!);
-        stdout.write('Tarifa por hora: ');
-        double tarifa = double.parse(stdin.readLineSync()!);
+        String nombre = stdin.readLineSync() ?? 'Empleado';
+        int horas = leerInt('Horas laboradas en el mes: ');
+        double tarifa = leerDouble('Tarifa por hora: ');
         double total = totalEmpleado(horas, tarifa);
         print('\nPlanilla del empleado:');
         print('Nombre:         $nombre');
@@ -98,11 +117,8 @@ void main() {
         break;
 
       case '5':
-        // Punto 5 usando función hipotenusa
-        stdout.write('\nDigite la longitud del cateto a: ');
-        double a = double.parse(stdin.readLineSync()!);
-        stdout.write('Digite la longitud del cateto b: ');
-        double b = double.parse(stdin.readLineSync()!);
+        double a = leerDouble('\nDigite la longitud del cateto a: ');
+        double b = leerDouble('Digite la longitud del cateto b: ');
         double h = hipotenusa(a, b);
         print('\nResultados del triángulo:');
         print('Cateto a:   $a');
@@ -111,9 +127,7 @@ void main() {
         break;
 
       case '6':
-        // Punto 6 usando función celsiusAFahrenheit
-        stdout.write('\nDigite la temperatura en °C: ');
-        double c = double.parse(stdin.readLineSync()!);
+        double c = leerDouble('\nDigite la temperatura en °C: ');
         double f = celsiusAFahrenheit(c);
         print('\nConversión de temperatura:');
         print('Celsius:    ${c.toStringAsFixed(1)} °C');
@@ -121,7 +135,6 @@ void main() {
         break;
 
       case '7':
-        // Salir
         continuar = false;
         print('\n¡Hasta luego!');
         break;
