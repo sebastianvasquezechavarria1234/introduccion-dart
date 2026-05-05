@@ -3,6 +3,7 @@ import 'operaciones.dart';
 
 
 // Funciones auxiliares para lectura segura
+/// Lee un valor decimal desde la consola de forma segura.
 double leerDouble(String mensaje) {
   while (true) {
     stdout.write(mensaje);
@@ -19,6 +20,7 @@ double leerDouble(String mensaje) {
   }
 }
 
+/// Lee un número entero desde la consola de forma segura.
 int leerInt(String mensaje) {
   while (true) {
     stdout.write(mensaje);
@@ -35,6 +37,7 @@ int leerInt(String mensaje) {
   }
 }
 
+/// Inicia el flujo para calcular distancia (velocidad × tiempo).
 void ejecutarMultiplicacion() {
   double velocidad = leerDouble('\n¿Cuál es la velocidad del vehículo? ');
   double tiempo = leerDouble('¿Cuál es el tiempo del recorrido? ');
@@ -42,6 +45,7 @@ void ejecutarMultiplicacion() {
   print('El resultado (velocidad × tiempo) es: $resultado');
 }
 
+/// Inicia el flujo para calcular el promedio de tres notas.
 void ejecutarPromedio() {
   double n1 = leerDouble('\nIngresa tu primera nota: ');
   double n2 = leerDouble('Ingresa tu segunda nota: ');
@@ -50,6 +54,7 @@ void ejecutarPromedio() {
   print('El promedio de tus notas es: ${promedio.toStringAsFixed(2)}');
 }
 
+/// Inicia el flujo para calcular los puntos de un equipo de fútbol.
 void ejecutarPuntajeEquipo() {
   int pg = leerInt('\nDigite la cantidad de partidos ganados: ');
   int pe = leerInt('Digite la cantidad de partidos empatados: ');
@@ -62,6 +67,7 @@ void ejecutarPuntajeEquipo() {
   print('Puntaje:   $totalPuntos');
 }
 
+/// Inicia el flujo para generar la planilla de un empleado.
 void ejecutarPlanillaEmpleado() {
   stdout.write('\nDigite el nombre del empleado: ');
   String nombre = stdin.readLineSync() ?? 'Empleado';
@@ -75,6 +81,7 @@ void ejecutarPlanillaEmpleado() {
   print('Total devengado:\$${total.toStringAsFixed(2)}');
 }
 
+/// Inicia el flujo para calcular la hipotenusa de un triángulo.
 void ejecutarHipotenusa() {
   double a = leerDouble('\nDigite la longitud del cateto a: ');
   double b = leerDouble('Digite la longitud del cateto b: ');
@@ -85,6 +92,7 @@ void ejecutarHipotenusa() {
   print('Hipotenusa: ${h.toStringAsFixed(2)}');
 }
 
+/// Inicia el flujo para convertir grados Celsius a Fahrenheit.
 void ejecutarConversionTemperatura() {
   double c = leerDouble('\nDigite la temperatura en °C: ');
   double f = celsiusAFahrenheit(c);
@@ -93,6 +101,7 @@ void ejecutarConversionTemperatura() {
   print('Fahrenheit: ${f.toStringAsFixed(1)} °F');
 }
 
+/// Punto de entrada principal de la aplicación.
 void main() {
   bool continuar = true;
 
