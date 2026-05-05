@@ -101,12 +101,28 @@ void ejecutarConversionTemperatura() {
   print('Fahrenheit: ${f.toStringAsFixed(1)} °F');
 }
 
+/// Limpia la pantalla de la consola según el sistema operativo.
+void limpiarPantalla() {
+  if (Platform.isWindows) {
+    stdout.write('\x1B[2J\x1B[0f');
+  } else {
+    stdout.write('\x1B[2J\x1B[3J\x1B[H');
+  }
+}
+
+/// Pausa la ejecución hasta que el usuario presione una tecla.
+void presioneContinuar() {
+  stdout.write('\nPresione Enter para continuar...');
+  stdin.readLineSync();
+}
+
 /// Punto de entrada principal de la aplicación.
 void main() {
   bool continuar = true;
 
   while (continuar) {
-    print('\n=== Menú de ejercicios ===');
+    limpiarPantalla();
+    print('=== Menú de ejercicios ===');
     print('1. Multiplicación velocidad × tiempo');
     print('2. Promedio de tres notas');
     print('3. Puntaje equipo de fútbol');
@@ -120,21 +136,27 @@ void main() {
     switch (opcion) {
       case '1':
         ejecutarMultiplicacion();
+        presioneContinuar();
         break;
       case '2':
         ejecutarPromedio();
+        presioneContinuar();
         break;
       case '3':
         ejecutarPuntajeEquipo();
+        presioneContinuar();
         break;
       case '4':
         ejecutarPlanillaEmpleado();
+        presioneContinuar();
         break;
       case '5':
         ejecutarHipotenusa();
+        presioneContinuar();
         break;
       case '6':
         ejecutarConversionTemperatura();
+        presioneContinuar();
         break;
       case '7':
         continuar = false;
@@ -142,6 +164,7 @@ void main() {
         break;
       default:
         print('\nOpción inválida. Intente de nuevo.');
+        presioneContinuar();
     }
   }
 }
